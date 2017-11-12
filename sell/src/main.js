@@ -4,10 +4,14 @@ import Vue from 'vue';
 import App from './App';
 // import router from './router';
 import VueRouter from 'vue-router';
+import VueResource from 'vue-resource';
 import goods from './components/goods/goods.vue';
 import seller from './components/seller/seller.vue';
 import ratings from './components/ratings/ratings.vue';
+import './common/stylus/index.styl';
+
 Vue.use(VueRouter);
+Vue.use(VueResource);
 
 // Vue.config.productionTip = false
 
@@ -24,7 +28,8 @@ const routes=[
   {path:'/ratings',component:ratings}
 ];
 const router=new VueRouter({
-  routes
+  routes,
+  linkActiveClass:'active'
 });
 export default router;
 router.push('goods');// 相当于页面初始化，显示goods的内容
