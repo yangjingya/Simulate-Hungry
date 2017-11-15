@@ -2,7 +2,7 @@
     <div class="goods">
         <div class="menu-wrapper" ref="menu-wrapper">
             <ul>
-                <li v-for="(item,index) in goods" class="menu-item" :class="{'current':currentIndex===index}" @click="selectMenu(index,$event)">
+                <li v-for="(item,index) in goods" class="menu-item" :class="{'current':currentIndex===index}" @click="selectMenu(index)">
                     <span class="text border-1px">
                         <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>
                         {{item.name}}
@@ -34,11 +34,13 @@
                 </li>
             </ul>
         </div>
+        <shopcart :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopcart>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
     import BScroll from "better-scroll";
+    import shopcart from "../shopcart/shopcart.vue";
 
     const ERR_OK=0;
 
@@ -81,11 +83,15 @@
             }
         },
         methods:{
-            selectMenu(index,event){
-                if(!event._constructed){
-                    return;
-                }
-                console.log(index);
+            selectMenu(index){
+                // if(!event._constructed){
+                //     return;
+                // }
+                // console.log(index);
+                let foodList=this.$refs['foods-wrapper'].getElementsByClassName("food-list-hook");
+                let el=foodList[index];
+                this.foodsScroll.scrollToElement(el,300);
+                
             },
              _initScroll() {
                 this.menuScroll = new BScroll(this.$refs['menu-wrapper'], {});
@@ -108,6 +114,9 @@
                     this.listHeight.push(height);
                 }
             }
+        },
+        components:{
+            "shopcart":shopcart
         }
     };
 </script>
