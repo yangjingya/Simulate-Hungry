@@ -1,5 +1,0 @@
-F:\管理系统\WebApplication1\Model\bin\Debug\Model.dll
-F:\管理系统\WebApplication1\Model\bin\Debug\Model.pdb
-F:\管理系统\WebApplication1\Model\obj\Debug\Model.dll
-F:\管理系统\WebApplication1\Model\obj\Debug\Model.pdb
-F:\管理系统\WebApplication1\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
