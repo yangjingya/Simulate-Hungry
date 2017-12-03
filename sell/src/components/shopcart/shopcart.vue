@@ -17,16 +17,40 @@
              </div>
          </div>
          <div class="ball-container">
-            <transition name="drop">
-                <div v-for="ball in balls" v-show="ball.show" class="ball"></div>    
-            </transition>
+            <div v-for="ball in balls" >
+                <transition name="drop">
+                    <div v-show="ball.show" class="ball"></div>    
+                </transition>
+            </div>
                 <div class="inner"></div>
          </div>
+        <!--  <div class="shopcart-list" v-show="listShow">
+             <div class="list-header">
+                 <h1 class="title">购物车</h1>
+                 <span class="empty">清空</span>
+             </div>
+             <div class="list-content">
+                 <ul>
+                     <li class="food" v-for="food in selectFoods">
+                         <span class="name">{{food.name}}</span>
+                         <div class="price">
+                             <span class="">¥{{food.price*food.count}}</span>
+                         </div>
+                         <div class="cartcontrol-wrapper">
+
+                         </div>
+                     </li>
+                 </ul>
+             </div>
+         </div> -->
      </div>
  </div>
 </template>
 
 <script type="text/ecmascript-6">
+
+    import cartcontrol from '../../components/cartcontrol/cartcontrol.vue';
+
     export default{
         props:{
             selectFoods:{
@@ -92,6 +116,11 @@
                     return 'not-enough'
                 else
                     return 'enough'
+            }
+        },
+        methods:{
+            drop(el){
+                console.log(el);
             }
         }
     };
@@ -192,12 +221,16 @@
                 left:32px
                 bottom:22px
                 z-index:200
-            .drop-enter-active,.drop-leave-active
-                transition:all 0.4s
                 .inner
                     width:16px
                     height:16px
                     border-radius:50%
+                    background:rgb(0,160,220)
+            .drop-enter-active,.drop-leave-active
+                transition:all 0.4s
+                .inner
+                    transition:all 0.4s
+
 
                     
 </style>

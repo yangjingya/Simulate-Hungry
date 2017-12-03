@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>查看用户信息</title>
+        <script type="text/javascript" src="scripts/jquery-1.4.1.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                //获取用户输入的注册信息
+                var aj = $.ajax({
+                    url: 'WatchInfomation.ashx',
+                    type: 'post', //post
+                    success: function (data) {
+                        var dataobj = eval("(" + data + ")");
+
+                        $.each(dataobj.reader, function (i, item) {
+                            $("#account").html(item.readerNo);
+                            $("#name").html(item.readerName);
+                            $("#sex").html(item.rSex);
+                            $("#phone").html(item.rPhoneNum);
+                            $("#institute").html(item.institute);
+                            $("#address").html(item.province + "省" + item.city + "市");
+                        })
+                    },
+                    error: function () {
+                        alert("数据库异常，请与管理员联系！");
+                    }
+                });
+            });
+        </script>
+        <style type="text/css">
+            .show-info
+            {
+                list-style:none;
+            }
+            .show-info li
+            {
+                font-size:16px;
+                font-weight:700;
+                padding:5px 0 5px 0;
+            }
+            .show-info li label
+            {
+                font-weight:normal;
+             }
+        </style>
+    </head>
+    <body>
+        <ul class="show-info">
+            <li>账号:<label id="account"></label></li>
+            <li>姓名：<label id="name"></label></li>
+            <li>性别：<label id="sex"></label></li>
+            <li>手机号码：<label id="phone"></label></li>
+            <li>所属学院：<label id="institute"></label> </li>
+            <li>家庭地址： <label id="address"></label></li>
+        </ul>
+    </body>
+</html>

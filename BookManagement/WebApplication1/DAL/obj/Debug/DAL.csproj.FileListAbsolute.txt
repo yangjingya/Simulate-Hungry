@@ -1,0 +1,7 @@
+F:\管理系统\WebApplication1\DAL\bin\Debug\DAL.dll
+F:\管理系统\WebApplication1\DAL\bin\Debug\DAL.pdb
+F:\管理系统\WebApplication1\DAL\obj\Debug\DAL.dll
+F:\管理系统\WebApplication1\DAL\obj\Debug\DAL.pdb
+F:\管理系统\WebApplication1\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+F:\管理系统\WebApplication1\DAL\bin\Debug\Model.dll
+F:\管理系统\WebApplication1\DAL\bin\Debug\Model.pdb

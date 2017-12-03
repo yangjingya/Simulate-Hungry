@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>修改用户信息</title>
+    <script type="text/javascript" src="scripts/jquery-1.4.1.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                //获取用户输入的注册信息
+                var aj = $.ajax({
+                    url: 'ModifyInformation.ashx',
+                    type: 'post', //post
+                    success: function (data) {
+                        var dataobj = eval("(" + data + ")");
+                        alert(data);
+                        $.each(dataobj.reader, function (i, item) {
+
+                            $("#txtAccount").val(item.readerNo);
+                            $("#txtPassword").val(item.readerPwd);
+                            $("#txtName").val(item.readerName);
+                            ((item.rSex) == "Male") ? ($("#radMale").attr('checked', 'checked')) : ($("#radFemale").attr('checked', 'checked'));
+                            $("#txtPhone").val(item.rPhoneNum);
+                            $("#txtInstitute").val(item.institute);
+                            var option1 = $("<option>").val(item.province).text(item.province);
+                            $("#SelectProvince").append(option1);
+                            var option2 = $("<option>").val(item.city).text(item.city);
+                            $("#SelectCity").append(option2);
+                        })
+                    },
+                    error: function () {
+                        alert("数据库异常，请与管理员联系！");
+                    }
+                });
+
+                $("#btnSubmit").click(function () {
+                    //获取用户输入的注册信息
+                    var strreaderNo;
+                    var strreaderPwd;
+                    var strreaderName;
+                    var strrSex;
+                    var strPhone;
+                    var strInstitute;
+                    var strProvince;
+                    var strCity;
+
+                    strreaderNo = $("#txtAccount").val();
+                    strreaderPwd = $("#txtPassword").val();
+                    strreaderName = $("#txtName").val();
+                    strrSex = $("input[name='sex']:checked").val();
+                    strPhone = $("#txtPhone").val();
+                    strInstitute = $("#txtInstitute").val();
+                    strProvince = $("#SelectProvince").val()+"省";
+                    strCity = $("#strCity").val() + "市";
+                    var aj = $.ajax({
+                        url: 'DataSave.ashx',
+                        data: {
+                            readerNo: strreaderNo,
+                            readerPwd: strreaderPwd,
+                            readerName: strreaderName,
+                            rSex: strrSex,
+                            rPhoneNum: strPhone,
+                            institute: strInstitute,
+                            province: strProvince,
+                            city: strCity
+                        },
+                        type: 'post', //post
+                        //dataType: 'json',
+                        success: function (data) {
+                            if (data == "true") {
+                                alert("修改成功！");
+                            }
+                            else {
+                                alert("修改失败");
+                            }
+                        },
+                        error: function () {
+                            alert("保存异常！");
+                        }
+                    });
+
+                });
+
+
+            });
+        </script>
+</head>
+<body>
+    
+    <p>
+        账号：<input id="txtAccount" type="text" 
+            onclick="return Text1_onclick()" readonly="readonly" /></p>
+    <p>
+        密码：<input id="txtPassword" type="text" /></p>
+    <p>
+        姓名：<input id="txtName" type="text" /></p>
+    <p>
+        性别：<input id="radMale" checked="checked" name="sex" 
+            type="radio" value="Male" />男&nbsp; 
+        <input 
+            id="radFemale" name="sex" type="radio" value="Female" />女</p>
+    <p>
+        手机号码：<input id="txtPhone" type="text" /></p>
+    <p>
+        所属学院：<input id="txtInstitute" type="text" /></p>
+    <p>
+        地址：<select id="SelectProvince" name="D1">
+            
+        </select>省<select id="SelectCity" name="D2">
+            
+        </select>市</p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input id="btnSubmit" type="button" value="确认修改" />&nbsp;
+        <input id="btnReset" type="reset" value="取消修改" /></p>
+    
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    
+</body>
+</html>
