@@ -29,7 +29,7 @@
                                     <span class="now">¥{{food.price}}</span><span v-show="food.oldPrice" class="old">>¥{{food.oldPrice}}</span>
                                 </div>
                                 <div class="cartcontrol-wrapper">
-                                    <cartcontrol :food="food"></cartcontrol>
+                                    <cartcontrol :food="food" @add="addFood"></cartcontrol>
                                 </div>
                             </div>
                         </li>
@@ -133,6 +133,7 @@
                 this._drop(target);
             },
             _drop(target){
+                //体验优化，异步执行下落动画
                 this.$nextTick(() => {
                     this.$refs.shopcart.drop(target);
                     });
