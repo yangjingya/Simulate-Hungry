@@ -28,6 +28,7 @@
                 }else{
                     this.food.count++;
                 }
+                event.stopPropagation();
                 this.$emit('add',event.target);
             },
             decreaseCart(event){
@@ -37,6 +38,7 @@
                 if(this.food.count){
                     this.food.count--;
                 }
+                event.stopPropagation();
             }
         }
     };
