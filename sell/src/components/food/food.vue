@@ -12,7 +12,7 @@
                 <h1 class="title">{{food.name}}</h1>
                 <div class="detail">
                     <span class="sell-count">月售{{food.sellCount}}份</span>
-                    <span class="rating">好评率{{food.rating}}</span>
+                    <span class="rating">好评率{{food.rating}}%</span>
                 </div>
                 <div class="price">
                     <span class="now">￥{{food.price}}</span>
@@ -36,7 +36,7 @@
             <div class="rating">
                 <h1 class="title">商品评价</h1>
             </div>
-            <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
+            <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings" @ratingtype-select="selectRatingtype" @content-toggle="toggleContent"></ratingselect>
         </div>
     </div>
   </transition>
@@ -94,6 +94,12 @@
             },
             addFood(target){
                 this.$emit('add',target);
+            },
+            selectRatingtype(type){
+                this.selectType=type;
+            },
+            toggleContent(only){
+                this.onlyContent=only;
             }
         },
         components: {
@@ -202,5 +208,12 @@
                 line-height:24px
                 padding:0 8px
                 font-size:12px
-                color:rgb(77,85,93)            
+                color:rgb(77,85,93)      
+        .rating
+            padding-top:18px;
+            .title
+                line-height:14px
+                margin-left:18px
+                font-size:14px
+                color:rgb(7,17,27)  
 </style>
