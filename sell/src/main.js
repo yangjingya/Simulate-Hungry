@@ -32,7 +32,7 @@ const router=new VueRouter({
   linkActiveClass:'active'
 });
 export default router;
-router.push('goods');// 相当于页面初始化，显示goods的内容
+//router.push('goods');// 相当于页面初始化，显示goods的内容
 
 // 挂载
 new Vue({
