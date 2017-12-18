@@ -13,15 +13,6 @@ import './common/stylus/index.styl';
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
-// Vue.config.productionTip = false
-
-/* eslint-disable no-new */
-// new Vue({
-//   el: '#app',
-//   router,
-//   template: '<App/>',
-//   components: { App }
-// });
 const routes=[
   {path:'/goods',component:goods},
   {path:'/seller',component:seller},
